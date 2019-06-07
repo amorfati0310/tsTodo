@@ -12,6 +12,20 @@ module.exports = (env,options) => {
           test: /\.tsx?$/,
           use: 'ts-loader',
           exclude: /node_modules/
+        },
+        {
+          test: /\.scss$/,
+          use: [
+            {
+              loader: "style-loader"
+            },
+            {
+              loader: "css-loader"
+            },
+            {
+              loader: "sass-loader"
+            }
+          ]
         }
       ]
     },
@@ -37,6 +51,10 @@ module.exports = (env,options) => {
       new webpack.HotModuleReplacementPlugin(),
       new HtmlWebpackPlugin({
         title: 'Development',
+        minify: {
+          collapseWhitespace: true // 문서의 텍스트 노드에서 공백을 제거합니다.
+        },
+        hash: true,
         showErrors: true, // 에러 발생시 메세지가 브라우저 화면에 노출 된다.
         template: `./src/assets/index.html`,
       })
