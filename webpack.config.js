@@ -21,7 +21,14 @@ module.exports = (env,options) => {
     output: {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist')
-    }
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        title: 'todo ts',
+        filename: '[name].html',
+        template: `./src/assets/index.html`,
+      })
+    ]
 
   };
   if(options.mode === 'development') {
@@ -30,7 +37,8 @@ module.exports = (env,options) => {
       new webpack.HotModuleReplacementPlugin(),
       new HtmlWebpackPlugin({
         title: 'Development',
-        showErrors: true // 에러 발생시 메세지가 브라우저 화면에 노출 된다.
+        showErrors: true, // 에러 발생시 메세지가 브라우저 화면에 노출 된다.
+        template: `./src/assets/index.html`,
       })
     ];
     config.devtool = 'inline-source-map';
@@ -44,9 +52,7 @@ module.exports = (env,options) => {
     };
   } else {
     //... Production 설정
-    config.plugins = [
-      new CleanWebpackPlugin(['dist'])
-    ];
+
   }
   return config;
 };
