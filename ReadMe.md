@@ -4,7 +4,7 @@
 ```npm i
 npm init -y 
 npm install --save-dev webpack webpack-cli  typescript ts-loader
-clean-webpack-plugin html-webpack-plugin webpack-dev-server axios
+clean-webpack-plugin html-webpack-plugin webpack-dev-server axios  sass-loader style-loader node-sass css-loader 
 
 //추후에 추가할 애들 
 lint-staged
